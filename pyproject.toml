@@ -1,0 +1,31 @@
+[tool.poetry]
+name        = "ecommerce-api"
+version     = "0.1.0"
+description = ""
+authors     = [ "Sanchith Hegde <sanchith.hegde01@gmail.com>" ]
+
+[tool.poetry.dependencies]
+python     = "^3.8"
+Flask      = "^2.0.2"
+psycopg2   = "^2.9.1"
+SQLAlchemy = "^1.4.25"
+
+[tool.poetry.dev-dependencies]
+black             = { version = "^21.9b0", allow-prereleases = true }
+isort             = { version = "^5.9.3", allow-prereleases = true }
+mypy              = { version = "^0.910", allow-prereleases = true }
+sqlalchemy2-stubs = { version = "^0.0.2-alpha.17", allow-prereleases = true }
+
+[build-system]
+requires      = [ "poetry-core>=1.0.0" ]
+build-backend = "poetry.core.masonry.api"
+
+# Configuration for tools
+
+[tool.isort]
+profile           = "black"
+known_first_party = [ "app" ]
+
+[tool.mypy]
+disallow_untyped_defs = false
+plugins               = [ "sqlalchemy.ext.mypy.plugin" ]
