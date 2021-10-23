@@ -1,0 +1,70 @@
+= E-Commerce Site API
+:toc: macro
+:toc-title!:
+
+A simple Flask application developed as part of the API development session conducted by Linux Campus Club in October 2021.
+
+[discrete]
+== Table of Contents
+
+toc::[]
+
+== Installation
+
+The following instructions are primarily aimed at Linux systems.
+You will have to make necessary changes to the commands to be able to run them on other operating systems.
+
+=== Dependencies
+
+* You will need to have Python, https://python-poetry.org/docs/[poetry] and https://www.postgresql.org/download/[PostgreSQL] installed before proceeding further.
+
+* Clone the repository and switch to the project directory.
++
+[source, shell]
+--
+$ git clone https://github.com/SanchithHegde/lcc-ecommerce-api
+$ cd lcc-ecommerce-api
+--
+
+* Install dependencies.
++
+[source, shell]
+--
+$ poetry install --no-dev --no-root
+--
+
+* Activate the environment.
++
+[source, shell]
+--
+$ poetry shell
+--
+
+=== Database Setup
+
+Create a database user and the database by connecting to the `psql` shell.
+Then, import the sample data into the database.
+
+[source, sql]
+--
+CREATE ROLE db_user WITH NOSUPERUSER CREATEDB LOGIN PASSWORD 'db_password';
+CREATE DATABASE db_name;
+\c db_name
+COPY categories FROM '/path/to/lcc-ecommerce-api/sample_data/categories.csv' DELIMITER ',' CSV HEADER;
+COPY products FROM '/path/to/lcc-ecommerce-api/sample_data/products.csv' DELIMITER ',' CSV HEADER;
+COPY product_categories FROM '/path/to/lcc-ecommerce-api/sample_data/product_categories.csv' DELIMITER ',' CSV HEADER;
+\q
+--
+
+== Running the Application
+
+[source, shell]
+--
+$ python3 app.py
+--
+
+The application should be running on port `5000` on your system.
+
+== License
+
+link:LICENSE.md[MIT]
